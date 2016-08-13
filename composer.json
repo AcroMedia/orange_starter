@@ -1,0 +1,7 @@
+{
+  "name": "AcroMedia/orange_starter",
+  "type": "drupal-theme",
+  "description": "Custom theme for our amazing clients.",
+  "homepage": "https://github.com/AcroMedia/orange_framework",
+  "license": "GPL-2.0+"
+}
