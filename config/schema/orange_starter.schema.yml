@@ -1,0 +1,5 @@
+# Schema for the configuration files of the theme.
+
+orange_starter.settings:
+  type: theme_settings
+  label: 'Orange Starter Settings'

@@ -1,0 +1,104 @@
+ /**
+ * Live CSS
+ */
+
+.live-css-nav ul a:hover {
+ color: $c-link;
+ text-decoration: none;
+}
+
+.live-css-nav ul .active > a {
+ color: $c-link-hover;
+}
+
+.live-css-v-primary i { background-color: $c-primary; }
+.live-css-v-secondary i { background-color: $c-secondary; }
+.live-css-v-tertiary i { background-color: $c-tertiary; }
+
+.live-css-v-accent-1 i { background-color: $c-accent-1; }
+.live-css-v-accent-2 i { background-color: $c-accent-2; }
+.live-css-v-accent-3 i { background-color: $c-accent-3; }
+
+.live-css-v-body i { background-color: $c-body; }
+.live-css-v-link i { background-color: $c-link; }
+.live-css-v-link-hover i { background-color: $c-link-hover; }
+
+.live-css-v-gray-base i { background-color: $gray-base; }
+.live-css-v-gray-darker i { background-color: $gray-darker; }
+.live-css-v-gray-dark i { background-color: $gray-dark; }
+.live-css-v-gray i { background-color: $gray; }
+.live-css-v-gray-light i { background-color: $gray-light; }
+.live-css-v-gray-lighter i { background-color: $gray-lighter; }
+
+.live-css-v-f-primary { font-family: $f-primary; }
+.live-css-v-f-secondary { font-family: $f-secondary; }
+.live-css-v-f-body { font-family: $f-body; }
+
+.live-css-v-o-border-radius i { background: $gray-light; @include border-radius($border-radius); }
+
+.ico-live-chat-bubble {
+  width: 30px;
+  height: 23px;
+  background-image: url(../gfx/icons/livecss/live_chat_bubble.svg);
+  background-size: 30px 23px;
+}
+.ico-search {
+  width: 18px;
+  height: 18px;
+  background-image: url(../gfx/icons/livecss/search_submit.svg);
+  background-size: 18px 18px;
+}
+.ico-social-facebook {
+  width: 28px;
+  height: 28px;
+  background-image: url(../gfx/icons/livecss/facebook.svg);
+  background-size: 28px 28px;
+}
+.ico-social-google {
+  width: 28px;
+  height: 28px;
+  background-image: url(../gfx/icons/livecss/google.svg);
+  background-size: 28px 28px;
+}
+.ico-social-twitter {
+  width: 28px;
+  height: 28px;
+  background-image: url(../gfx/icons/livecss/twitter.svg);
+  background-size: 28px 28px;
+}
+.ico-social-instagram {
+  width: 28px;
+  height: 28px;
+  background-image: url(../gfx/icons/livecss/instagram.svg);
+  background-size: 28px 28px;
+}
+.ico-social-youtube {
+  width: 28px;
+  height: 28px;
+  background-image: url(../gfx/icons/livecss/youtube.svg);
+  background-size: 28px 28px;
+}
+.ico-social-pinterest {
+  width: 28px;
+  height: 28px;
+  background-image: url(../gfx/icons/livecss/pinterest.svg);
+  background-size: 28px 28px;
+}
+.ico-social-linkedin {
+  width: 28px;
+  height: 28px;
+  background-image: url(../gfx/icons/livecss/linkedin.svg);
+  background-size: 28px 28px;
+}
+.ico-comment-bubble {
+  width: 42px;
+  height: 38px;
+  background-image: url(../gfx/icons/livecss/comment_bubble.svg);
+  background-size: 42px 38px;
+}
+.ico-comment-reply {
+  width: 16px;
+  height: 15px;
+  background-image: url(../gfx/icons/livecss/comment_reply.svg);
+  background-size: 16px 15px;
+}

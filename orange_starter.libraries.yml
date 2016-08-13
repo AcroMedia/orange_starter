@@ -1,0 +1,23 @@
+global-styling:
+  version: 1.x
+  css:
+    theme:
+      css/style.css: { media: all }
+      font-awesome/css/font-awesome.min.css: { media: all }
+      'https://fonts.googleapis.com/css?family=Kaushan+Script|Roboto+Slab|PT+Sans': { type: external }
+
+  js:
+    js/contrib/jquery.sidr.min.js: {}
+    js/contrib/doubletaptogo.min.js: {}
+    js/custom/script.js: {}
+  dependencies:
+    - core/jquery
+    - core/drupal
+
+maintenance_page:
+  version: 1.x
+  css:
+    theme:
+      css/maintenance-page.css: { media: all }
+  dependencies:
+    - system/maintenance

@@ -1,0 +1,248 @@
+/**
+ * Navigation Styles
+ *
+ * NOTE:
+ * This file is for base navigation, mobile navigation, and social media navigation styles.
+ * Any styles for a specific menu should go in the partial that makes most
+ * sense for that menu. Example: Footer navigation styles go in _footer.scss,
+ * sidebar navigation styles go in _content.scss, etc.
+ *
+ */
+
+/*-- Mobile Navigation Styles --*/
+
+//Mobile Toggle
+.header__top-mobile-toggle {
+  float: right;
+  margin-top: 10px;
+  display: block;
+  color: #fff;
+  font-size: 25px;
+}
+
+//Sidr
+
+#mobile-overlay {
+  display: none;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: #000;
+  opacity: 0.75;
+  z-index: 100;
+  @include transition(opacity 0.15s linear);
+}
+
+.sidr-open #mobile-overlay {
+  display: block;
+}
+
+.sidr__content-close {
+  margin: 0 0 20px 0;
+  padding: 0;
+}
+
+.sidr__content-close-btn {
+  color: #ccc;
+  text-decoration: none;
+  outline: none;
+
+  &:hover {
+    color: #666;
+  }
+  .glyphicon {
+    font-size: 25px;
+  }
+}
+
+#sidr {
+  display: block;
+  position: fixed;
+  top: 0;
+  height: 100%;
+  width: 245px;
+  overflow-x: hidden;
+  overflow-y: auto;
+  background: #fff;
+  z-index: 999999;
+
+  #sidr__content {
+    padding: 12px 20px 20px 20px;
+  }
+
+  .menu {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    border: none;
+    background: none;
+
+    li {
+      position: relative;
+      float: none;
+      display: block;
+      margin: 0 0 10px 0;
+      padding: 0 0 10px 0;
+      border: none;
+      border-bottom: 1px solid #efede9;
+      background: none;
+
+      /* -- 2nd Level -- */
+      ul {
+        margin: 0 0 0 10px;
+        padding: 0;
+
+        li {
+          margin: 0;
+          padding: 0;
+
+          &:last-child {
+            border: none;
+          }
+
+          &:last-child a {
+            padding-bottom: 0;
+          }
+        }
+        a {
+          padding: 8px 0;
+          font-size: 12px;
+        }
+      }
+    }
+    a {
+      display: block;
+      margin: 0;
+      padding: 4px 0;
+      font-size: 15px;
+      line-height: 18px;
+      font-weight: bold;
+      text-decoration: none;
+
+      &:hover,
+      &.active-trail,
+      &.active {
+        color: #000;
+        text-decoration: none;
+        -webkit-box-shadow: none;
+        box-shadow: none;
+      }
+    }
+  }
+}
+
+.sidr.right {
+  left: auto;
+  right: -245px;
+}
+
+.sidr.left {
+  left: -245px;
+  right: auto;
+}
+
+/*-- General Navigation Styles --*/
+.menu {
+  //Offset padding on li a
+  margin: 0 -15px;
+  padding: 0;
+
+  > li {
+    position: relative;
+    padding: 0;
+    float: none;
+    display: inline-block;
+  }
+
+  > li > a {
+    display: block;
+    padding: 15px;
+    font-size: 16px;
+  }
+}
+
+@media(min-width: 768px) {
+
+  //Dropdown Menu
+  .menu {
+    .menu__dropdown {
+      display: none;
+      position: absolute;
+      left: 0;
+      top: 100%;
+      z-index: 1000;
+      background: #333;
+      float: left;
+      min-width: 160px;
+      padding: 5px 0;
+      list-style: none;
+      font-size: 90%;
+      -webkit-box-shadow: 0 6px 12px rgba(0,0,0,0.175);
+      box-shadow: 0 6px 12px rgba(0,0,0,0.175);
+      background-clip: padding-box;
+
+      li a {
+        display: block;
+        padding: 5px 20px;
+        clear: both;
+        font-weight: normal;
+        white-space: nowrap;
+      }
+    }
+
+    .menu__dropdown-parent:hover .menu__dropdown {
+      display: block;
+    }
+
+    //Down Arrow
+    .menu__dropdown-parent span {
+      color: #fff;
+    }
+  }
+}
+
+/*-- Social Media Navigation Styles --*/
+.social-media-navigation {
+
+  @media(min-width: 768px) {
+    float: right;
+  }
+
+  .menu.menu--social-media {
+    padding: 15px 0;
+    //To offset margin of li a below
+    margin: 0 -5px;
+
+    li a {
+      padding: 0;
+      margin: 0 5px;
+      font-size: 0;
+    }
+
+    li a:before {
+      font-family: FontAwesome;
+      font-size: 18px;
+    }
+
+    li.facebook a:before { content: "\f09a"; }
+    li.twitter a:before { content: "\f099"; }
+    li.instagram a:before { content: "\f16d"; }
+    li.google-plus a:before { content: "\f0d5"; }
+    li.pinterest a:before { content: "\f0d2"; }
+    li.linkedin a:before { content: "\f0e1"; }
+    li.youtube a:before { content: "\f16a"; }
+    li.vimeo a:before { content: "\f27d"; }
+    li.snapchat a:before { content: "\f2ab"; }
+    li.vine a:before { content: "\f1ca"; }
+    li.yelp a:before { content: "\f1e9"; }
+    li.trip-advisor a:before { content: "\f262"; }
+  }
+}
+
+/*-- Bootstrap Overrides --*/
+.nav>li>a:hover,
+.nav>li>a:focus {
+  background-color: $gray-lighter;
+}

@@ -1,0 +1,42 @@
+//Carousel
+.region-carousel {
+  background: #F5F5F5;
+
+  .carousel {
+    width: 1600px;
+    max-width: 100%;
+    margin: 0 auto;
+  }
+
+  .carousel-indicators {
+    bottom: 0;
+  }
+
+  .carousel-caption {
+    padding-bottom: 20px;
+
+    a {
+      margin: 0 0 20px;
+    }
+  }
+
+  .item a img {
+    @include transition(all .25s ease-in-out);
+
+    &:hover {
+      -moz-transform: scale(1.02);
+      -webkit-transform: scale(1.02);
+      -o-transform: scale(1.02);
+      -ms-transform: scale(1.02);
+      transform: scale(1.02);
+    }
+  }
+
+  .carousel-control:hover {
+    opacity: 0.75;
+  }
+
+  .carousel-control:focus {
+
+  }
+}

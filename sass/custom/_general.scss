@@ -1,0 +1,181 @@
+/**
+ * General
+ */
+
+html,
+body {
+  color: $c-body;
+  background: $c-site-bg;
+  font-family: $f-body;
+}
+
+body {
+  font-size: 16px;
+  line-height: 1.5;
+}
+
+.label {
+  color: $c-body;
+}
+
+/**
+ * Typography
+ */
+
+//Headings
+h1 {
+  margin-top: 30px;
+  font-family: $f-primary;
+  font-size: 60px;
+}
+
+h2 {
+  margin-top: 30px;
+  font-family: $f-primary;
+  font-size: 40px;
+}
+
+h3 {
+  margin-top: 30px;
+  font-family: $f-primary;
+  font-size: 34px;
+}
+
+h4 {
+  margin-top: 25px;
+  font-family: $f-secondary;
+  font-size: 24px;
+}
+
+h5 {
+  margin-top: 25px;
+  font-family: $f-secondary;
+  font-size: 18px;
+  text-transform: uppercase;
+}
+
+h6 {
+  margin-top: 25px;
+  font-family: $f-secondary;
+  font-size: 16px;
+  text-transform: uppercase;
+}
+
+//Content
+p {
+  margin: 0 0 20px 0;
+}
+
+ul, ol {
+  margin-top: 0;
+  margin-bottom: 20px;
+}
+
+blockquote {
+  padding: 0 20px;
+  border-left: 14px solid $c-primary;
+  font-family: $f-secondary;
+  font-style: italic;
+}
+
+//Border Radius Styles
+.btn,
+.form-control,
+.pager li>a,
+.pager li>span,
+.card,
+.modal-content {
+  @include border-radius($border-radius);
+}
+
+.card .card__image img,
+.nav-tabs>li>a {
+  @include border-top-radius($border-radius);
+}
+
+//Links
+a {
+  color: $c-link;
+  text-decoration: none;
+
+  &:hover, &:focus {
+    color: $c-link-hover;
+    text-decoration: none;
+  }
+}
+
+/**
+ * Buttons
+ */
+
+.btn {
+  font-family: $f-secondary;
+  font-size: 18px;
+  @include transition(all .2s ease-in-out);
+}
+
+//Primary Button
+.btn-primary {
+  background-color: $c-primary;
+  border-color: $c-primary;
+}
+
+.btn-primary:hover,
+.btn-primary:active,
+.btn-primary:focus,
+.btn-primary:active:hover,
+.btn-primary:active:focus,
+.btn-primary:active.focus,
+.btn-primary.active:hover,
+.btn-primary.active:focus,
+.btn-primary.active.focus,
+.open>.btn-primary.dropdown-toggle:hover,
+.open>.btn-primary.dropdown-toggle:focus,
+.open>.btn-primary.dropdown-toggle.focus {
+  background-color: darken($c-primary, 10%);
+  border-color: darken($c-primary, 10%);
+}
+
+//Default Button
+.btn-default {
+  border-color: $gray-light;
+}
+
+.btn-default:hover,
+.btn-default:active,
+.btn-default:focus,
+.btn-default:active:hover,
+.btn-default:active:focus,
+.btn-default:active.focus,
+.btn-default.active:hover,
+.btn-default.active:focus,
+.btn-default.active.focus,
+.open>.btn-default.dropdown-toggle:hover,
+.open>.btn-default.dropdown-toggle:focus,
+.open>.btn-default.dropdown-toggle.focus {
+  background-color: $gray-lighter;
+  border-color: $gray-light;
+}
+
+//Link Button
+.btn-link {
+  color: $c-link;
+
+  &:hover, &:focus {
+    color: $c-link-hover;
+  }
+}
+
+//Large Button
+.btn-lg, .btn-group-lg>.btn {
+  font-size: 24px;
+}
+
+/**
+ * Site Structure
+ */
+
+.site-wrapper {
+  clear: both;
+  position: relative;
+}

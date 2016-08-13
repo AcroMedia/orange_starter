@@ -1,0 +1,66 @@
+/**
+ * Header Styles
+ */
+
+.header {
+  background: $gray-darker;
+
+  //Top
+  .header__top {
+
+    //Logo
+    .header__top-logo {
+      float: left;
+      margin: 15px 0;
+      padding: 0;
+
+      img {
+        display: block;
+        width: 80px;
+        height: 89px;
+      }
+    }
+
+    //Top Navigation
+    .header__top-navigation {
+      float: right;
+    }
+  }
+
+  //Bottom
+  .header__bottom {
+    background-color: $gray-base;
+
+    //Main Navigation
+    .header__bottom-navigation, .header__bottom-search {
+      display: inline-block;
+    }
+
+    .header__bottom-navigation {
+      .menu__dropdown {
+        background-color: $gray-base;
+      }
+    }
+
+    //Search Bar
+    .header__bottom-search {
+      margin: 10px 0;
+
+      @media(min-width: 768px) {
+        float: right;
+      }
+
+      input {
+        display: inline-block;
+        width: auto;
+        height: 34px;
+        vertical-align: middle;
+        font-size: 14px;
+      }
+
+      .form-optional {
+        display: none;
+      }
+    }
+  }
+}

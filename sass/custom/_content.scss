@@ -1,0 +1,244 @@
+/**
+ * Content Styles
+ */
+
+.content {
+  padding: 20px 0;
+
+  @media(min-width: 768px) {
+    padding: 50px 0;
+  }
+
+  .content__sidebar {
+    .menu {
+      margin: 0;
+    }
+
+    .menu>li {
+      display: block;
+    }
+
+    .menu>li>a {
+      padding: 10px 15px;
+      border-bottom: 1px solid $gray-lighter;
+
+      &:hover {
+        background-color: $gray-lighter;
+      }
+    }
+  }
+
+  .content__main-content {
+
+  }
+
+  .page-title {
+    margin-top: 0;
+  }
+
+  img {
+    display: block;
+    max-width: 100%;
+    height: auto;
+  }
+}
+
+/**
+ * Forms
+ */
+
+.form-group {
+  margin-bottom: 25px;
+}
+
+.form-control, .form-textarea-wrapper textarea {
+  max-width: 100%;
+  width: 350px;
+}
+
+.radio,
+.checkbox {
+  margin-top: 0;
+}
+
+.help-block {
+  font-size: 80%;
+  font-style: italic;
+  color: #9C9C9C;
+}
+
+//Required and Optional Fields
+.form-required {
+  color: $c-primary;
+}
+
+.form-optional {
+  font-weight: normal;
+  font-size: 90%;
+  color: #B3B3B3;
+}
+
+/**
+ * Accordion
+ */
+
+.base-accordion {
+  .active .base-accordion__header {
+    color: $c-secondary;
+
+    &::before {
+      color: $gray-light;
+    }
+  }
+
+  .base-accordion__header {
+    position: relative;
+    padding-left: 15px;
+    font-family: $f-secondary;
+    @include transition(all .2s ease-in-out);
+
+    &::before {
+      content: "\f105";
+      font-family: FontAwesome;
+      color: lighten($gray-light, 10%);
+      position: absolute;
+      left: 0;
+      @include transition(all .2s ease-in-out);
+    }
+
+    &:hover::before {
+      color: $gray-light;
+    }
+  }
+
+  .base-accordion__content {
+    background-color: #f7f5f5;
+  }
+}
+
+/**
+ * Cards
+ */
+
+.card {
+  display: block;
+  border: 1px solid #cccccc;
+  background: #f7f5f5;
+  color: $c-body;
+  text-align: center;
+  -webkit-box-shadow: 0 4px 0 0 #ededed;
+  box-shadow: 0 4px 0 0 #ededed;
+  @include transition(all .1s ease-in-out);
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    margin-top: 0;
+  }
+
+  .card__text-wrapper {
+    padding: 20px 20px 0;
+  }
+
+  .btn {
+    margin: 0 0 20px 0;
+  }
+}
+
+a.card:hover {
+  -webkit-box-shadow: 0 4px 0 0 #ededed;
+  box-shadow: 0 4px 4px 4px #ededed;
+}
+
+/**
+ * Image Gallery
+ */
+.image-gallery-nav {
+  ul.flex-direction-nav {
+    display: block!important;
+    position: absolute;
+    top: 50%;
+    left: 0;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+
+    .flex-nav-prev,
+    .flex-nav-next {
+      position: absolute;
+      font-family: FontAwesome;
+      font-size: 24px;
+      -moz-transform: translateY(-50%);
+      -webkit-transform: translateY(-50%);
+      -o-transform: translateY(-50%);
+      -ms-transform: translateY(-50%);
+      transform: translateY(-50%);
+    }
+
+    .flex-nav-next {
+      right: 0;
+    }
+  }
+  
+  .image-gallery-nav__thumb {
+    height: auto;
+    @include transition(all .2s ease-in-out);
+
+    &:hover,
+    &:focus {
+      opacity: 0.85;
+    }
+  }
+}
+
+/**
+ * Tables
+ */
+.table-bordered thead {
+  background: $c-secondary;
+  color: #fff;
+}
+
+/**
+ * Pagination
+ */
+.pager li>a:hover,
+.pager li>a:focus {
+  background-color: $gray-lighter;
+}
+
+.pager__item.is-active {
+  a {
+    background: $c-link;
+    border-color: $c-link-hover;
+    color: #fff;
+
+    &:hover,
+    &:focus {
+      background: $c-link-hover;
+    }
+  }
+}
+
+/**
+ * Modals
+ */
+@media(min-width: 768px) {
+  .modal.in .modal-dialog {
+    -webkit-transform: translateX(-50%) translateY(-50%);
+    -o-transform: translateX(-50%) translateY(-50%);
+    -ms-transform: translateX(-50%) translateY(-50%);
+    transform: translateX(-50%) translateY(-50%);
+  }
+
+  .modal-dialog {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin: 0;
+  }
+}
