@@ -85,7 +85,7 @@ blockquote {
 .pager li>span,
 .card,
 .modal-content {
-  @include border-radius($border-radius);
+  border-radius: $border-radius;
 }
 
 .card .card__image img,

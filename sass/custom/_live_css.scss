@@ -34,7 +34,7 @@
 .live-css-v-f-secondary { font-family: $f-secondary; }
 .live-css-v-f-body { font-family: $f-body; }
 
-.live-css-v-o-border-radius i { background: $gray-light; @include border-radius($border-radius); }
+.live-css-v-o-border-radius i { background: $gray-light; border-radius: $border-radius; }
 
 .ico-live-chat-bubble {
   width: 30px;
