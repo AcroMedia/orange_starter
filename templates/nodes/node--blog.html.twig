@@ -68,7 +68,7 @@
 
 <div class="blog-listing-item">
   <div class="blog-listing-item__image">
-    <a href="{{ url }}">{{ content.field_blog_header_image }}</a>
+    <a href="{{ url }}">{{ content.field_blog_image }}</a>
   </div>
   <h3 class="blog-listing-item__title">
     <a href="{{ url }}">{{ label }}</a>
@@ -99,9 +99,9 @@
 {% else %}
 
 <article{{ attributes }}>
-  {% if content.field_blog_header_image %}
+  {% if content.field_blog_image %}
     <div class="blog-post-image">
-      {{ content.field_blog_header_image }}
+      {{ content.field_blog_image }}
     </div>
   {% endif %}
 
