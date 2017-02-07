@@ -85,9 +85,9 @@ function orange_starter_preprocess_node(&$variables) {
   if ($variables['node']->getType() === 'image_gallery') {
     //$variables['gallery_body'] = Xss::filter($variables['node']->field_gallery_body->value);
     //$variables['gallery_body'] = $variables['node']->field_gallery_body->value;
-    $variables['gallery_image'] = $variables['node']->field_gallery_image->entity->url();
-    $variables['gallery_image_alt'] = $variables['node']->field_gallery_image->alt;
-    $variables['gallery_image_caption'] = $variables['node']->field_gallery_image->title;
+    $variables['gallery_image'] = $variables['node']->field_image_gallery_image->entity->url();
+    $variables['gallery_image_alt'] = $variables['node']->field_image_gallery_image->alt;
+    $variables['gallery_image_caption'] = $variables['node']->field_image_gallery_image->title;
   }
 
   // Contact Information - Google Map
