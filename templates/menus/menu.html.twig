@@ -39,8 +39,11 @@
     {% for item in items %}
       {% if item.below %}
       <li{{ item.attributes.addClass('menu__dropdown-parent') }}>
-        <a href="{{ item.url }}">{{ item.title }} <span class="fa fa-angle-down hidden-xs" aria-hidden="true"></span></a>
-          {{ menus.menu_links(item.below, attributes, menu_level + 1) }}
+        {% set title %}
+          {{ item.title }}<span class="fa fa-angle-down hidden-xs" aria-hidden="true"></span>
+        {% endset %}
+        {{ link(title, item.url) }}
+        {{ menus.menu_links(item.below, attributes, menu_level + 1) }}
       </li>
       {% else %}
       <li {{ item.attributes }}>
