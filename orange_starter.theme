@@ -47,6 +47,12 @@ function orange_starter_preprocess_html(&$variables) {
   $route_match = \Drupal::routeMatch();
   $title = \Drupal::service('title_resolver')->getTitle($request, $route_match->getRouteObject());
 
+  // getTitle may return array|string|null but urlencode can not handle an array.
+  // pull the title from the returned render array returned by getTitle in the case
+  if (is_array($title)) {
+      $title = $title['#markup'];
+  }
+
   $variables['attributes']['class'][] = 'page-title-' . strtolower(urlencode($title));
 
   // Add information about the number of sidebars.
