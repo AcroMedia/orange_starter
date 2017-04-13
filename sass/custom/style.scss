@@ -1,20 +1,21 @@
-// Global
+// Contrib.
+@import '../contrib/font-awesome/font-awesome';
+
+// Global.
 @import 'variables';
 @import 'mixins';
 
-// General
+// General.
 @import 'general';
 @import 'navigation';
-@import 'header';
-@import 'footer';
 @import 'content';
+@import 'comments';
 
-// Pages
+// Pages.
+@import 'site_header';
+@import 'site_footer';
 @import 'pages/homepage';
 @import 'pages/blog';
 
-// Responsive
-@import 'responsive';
-
-// Live CSS
+// Live CSS.
 @import 'live_css';

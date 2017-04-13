@@ -43,46 +43,54 @@
  * @see template_preprocess_page()
  * @see seven_preprocess_page()
  * @see html.html.twig
-
- page.page_sidebar|striptags|trim
-
  */
 #}
+{#
+  Render sidebar to be able to check if it is truly empty.
+  Issue: https://www.drupal.org/node/953034.
+#}
+{% set page_sidebar_rendered = render_var(page.page_sidebar) %}
+{# Set column class based on sidebar. #}
+{% set col_class = page_sidebar_rendered ? 'col-sm-8 col-md-9' : 'col-sm-12' %}
 
-<!-- Site Header -->
+{# Site Header. #}
 {% include base_path ~ directory ~ '/templates/pages/includes/site_header.html.twig' %}
-<!-- / Site Header -->
+{# / Site Header. #}
 
-<!-- Main Content -->
-<div class="content">
+{# Main Content. #}
+<div class="site-content">
   <div class="container">
-    <!-- Row -->
     <div class="row">
-      {% if page.page_sidebar %}
-        <div class="col-md-9">
-      {% else %}
-        <div class="col-md-12">
-      {% endif %}
-          <main class="content__main-content clearfix" role="main">
-            <div class="visually-hidden"><a id="main-content" tabindex="-1"></a></div>
-            {{ page.highlighted }}
-            {{ page.content }}
-          </main>
+      {% if page_sidebar_rendered %}
+        <div class="col-sm-4 col-md-3 hidden-xs">
+          <aside class="site-sidebar" role="complementary">
+            {{ page.page_sidebar }}
+          </aside>
         </div>
+      {% endif %}
 
-        {% if page.page_sidebar %}
-          <div class="col-md-3">
-            <aside class="content__sidebar" role="complementary">
-              {{ page.page_sidebar }}
-            </aside>
-          </div>
-        {% endif %}
+      <div class="{{ col_class }}">
+        <main class="content__main-content clearfix" role="main">
+          <div class="visually-hidden"><a id="main-content" tabindex="-1"></a></div>
+          {% if page.highlighted %}
+            {{ page.highlighted }}
+          {% endif %}
+          {% if page.above_content %}
+            {{ page.above_content }}
+          {% endif %}
+          {% if page.content %}
+            {{ page.content }}
+          {% endif %}
+          {% if page.below_content %}
+            {{ page.below_content }}
+          {% endif %}
+        </main>
+      </div>
     </div>
-    <!-- / Row -->
   </div>
 </div>
-<!-- / Main Content -->
+{# / Main Content. #}
 
-<!-- Site Footer -->
+{# Site Footer. #}
 {% include base_path ~ directory ~ '/templates/pages/includes/site_footer.html.twig' %}
-<!-- / Site Footer -->
+{# / Site Footer. #}

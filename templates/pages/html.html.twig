@@ -8,7 +8,7 @@
  * - root_path: The root path of the current page (e.g., node, admin, user).
  * - node_type: The content type for the current node, if the page is a node.
  * - head_title: List of text elements that make up the head_title variable.
- *   May contain or more of the following:
+ *   May contain one or more of the following:
  *   - title: The title of the page.
  *   - name: The name of the site.
  *   - slogan: The slogan of the site.
@@ -29,6 +29,10 @@
     not root_path ? 'path-frontpage' : 'path-' ~ root_path|clean_class,
     node_type ? 'page-node-type-' ~ node_type|clean_class,
     db_offline ? 'db-offline',
+    page_title ? 'page-title-' ~ page_title|clean_class,
+    current_path ? 'path' ~ current_path|clean_class,
+    term_vocabulary ? 'term-vocab-' ~ term_vocabulary|clean_class,
+    term_name ? 'term-' ~ term_name|clean_class,
   ]
 %}
 <!DOCTYPE html>
@@ -40,9 +44,7 @@
     <js-placeholder token="{{ placeholder_token|raw }}">
   </head>
   <body{{ attributes.addClass(body_classes) }}>
-
     <div id="mobile-overlay"></div>
-
     <a href="#main-content" class="visually-hidden focusable skip-link">
       {{ 'Skip to main content'|t }}
     </a>
@@ -50,6 +52,5 @@
     {{ page }}
     {{ page_bottom }}
     <js-bottom-placeholder token="{{ placeholder_token|raw }}">
-
   </body>
 </html>
