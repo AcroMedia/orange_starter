@@ -14,7 +14,6 @@ ckeditor_stylesheets:
 
 regions:
   header: 'Header'
-  carousel: 'Carousel'
   highlighted: 'Highlighted'
   above_content: 'Above Content'
   content: 'Content'
