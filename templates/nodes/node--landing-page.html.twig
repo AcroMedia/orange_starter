@@ -1,0 +1,56 @@
+{#
+/**
+ * @file
+ * Theme implementation for a Landing Content type.
+ *
+ * Available variables:
+ * - page_header_image_url: The header image's image style url for the field,
+ *   "field_page_header_image".
+ *
+ * @see template_preprocess_node()
+ */
+#}
+{%
+set classes = [
+'node',
+'node--type-' ~ node.bundle|clean_class,
+node.isPromoted() ? 'node--promoted',
+not node.isPublished() ? 'node--unpublished',
+view_mode ? 'node--view-mode-' ~ view_mode|clean_class,
+'clearfix',
+]
+%}
+{% set col_class = node.field_attach_webform|length ? 'col-xs-12 col-md-8' : 'col-sm-12' %}
+
+<article{{ attributes.addClass(classes) }}>
+
+  <div{{ content_attributes.addClass('node__content', 'clearfix', 'landing__content') }}>
+
+    <div class="{{ col_class }}">
+    {% if display_submitted %}
+      <div class="node__meta">
+        {{ author_picture }}
+        <span{{ author_attributes }}>
+          {% trans %}Submitted by {{ author_name }} on {{ date }}{% endtrans %}
+        </span>
+        {{ metadata }}
+      </div>
+    {% endif %}
+    {{ content }}
+    </div>
+    {% if node.field_attach_webform|length %}
+    <div class="col-xs-12 col-md-4">
+      <div class="lead__wrapper">
+        {% if node.field_webform_title.value %}
+          <h2>{{ node.field_webform_title.value }}</h2>
+        {% endif %}
+        {% if node.field_webform_body.value %}
+          <p>{{ node.field_webform_body.value }}</p>
+        {% endif %}
+        {{ render_form }}
+      </div>
+    </div>
+    {% endif %}
+
+  </div>
+</article>

@@ -110,10 +110,16 @@ function orange_starter_preprocess_node(&$variables) {
     $variables['encoded_title'] = $encoded_title;
 
     // Page.
-    if ($node->getType() === 'page') {
+    if ($node->getType() === 'page' || $node->getType() === 'landing_page') {
       // Page Header Image.
       if (isset($node->field_page_header_image->entity)) {
         $variables['page_header_image_url'] = ImageStyle::load('banner')->buildUrl($node->field_page_header_image->entity->getFileUri());
+      }
+      if (isset($node->field_attach_webform->entity)) {
+        $webform_nid  = $node->field_attach_webform[0]->target_id;
+        $webform = \Drupal::entityTypeManager()->getStorage('webform')->load($webform_nid);
+        $variables['render_form'] = $webform->getSubmissionForm();
+
       }
     }
 
@@ -209,6 +215,9 @@ function orange_starter_preprocess_page(&$variables) {
   // Node.
   if (isset($variables['node'])) {
     $node = $variables['node'];
+    if (isset($node->field_page_header_image->entity)) {
+      $variables['page_header_image_url'] = ImageStyle::load('banner')->buildUrl($node->field_page_header_image->entity->getFileUri());
+    }
   }
 }
 

@@ -1,0 +1,65 @@
+{#
+/**
+ * @file
+ * Theme implementation to display a Landing page.
+ *
+ * @see template_preprocess_page()
+ */
+#}
+{#
+  Render sidebar to be able to check if it is truly empty.
+  Issue: https://www.drupal.org/node/953034.
+#}
+
+{# Site Header. #}
+{% include base_path ~ directory ~ '/templates/pages/includes/site_header.html.twig' %}
+{# / Site Header. #}
+{# / Page Banner. #}
+
+<section>
+  <div class="landing-header-image">
+    <img src="{{ page_header_image_url }}" alt="{{ node.field_page_header_image.alt.value }}" />
+    <div class="lading-page-title">
+      <div class="container">
+        <div class="row">
+          <div class="col-xs-12">
+            {{ title_prefix }}
+            <h1{{ title_attributes.addClass('page-title') }}>
+              {{ node.label }}
+            </h1>
+            {{ title_suffix }}
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+{# / Page Banner. #}
+
+{# Main Content. #}
+<div class="site-content">
+  <div class="container">
+    <div class="row">
+      <main class="content__main-content clearfix" role="main">
+        <div class="visually-hidden"><a id="main-content" tabindex="-1"></a></div>
+        {% if page.highlighted %}
+          {{ page.highlighted }}
+        {% endif %}
+        {% if page.above_content %}
+          {{ page.above_content }}
+        {% endif %}
+        {% if page.content %}
+          {{ page.content }}
+        {% endif %}
+        {% if page.below_content %}
+          {{ page.below_content }}
+        {% endif %}
+      </main>
+    </div>
+  </div>
+</div>
+{# / Main Content. #}
+
+{# Site Footer. #}
+{% include base_path ~ directory ~ '/templates/pages/includes/site_footer.html.twig' %}
+{# / Site Footer. #}
