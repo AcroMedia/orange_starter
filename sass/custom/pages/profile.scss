@@ -1,0 +1,103 @@
+.page-node-type-profile .block-page-title-block {
+  display: none;
+}
+.profile-page-title {
+  margin-top: 46px;
+  padding-bottom: 6px;
+  border-bottom: 1px solid #cccccc;
+}
+.link-btn{
+  color: #000;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  padding: 8px 18px;
+  font-family: arial,Georgia, Times, "Times New Roman", serif;
+  background: -moz-linear-gradient(top, #ffffff 0%, #f3f3f3 50%, #ededed 51%, #ffffff 100%); /* FF3.6-15 */
+  background: -webkit-linear-gradient(top, #ffffff 0%,#f3f3f3 50%,#ededed 51%,#ffffff 100%); /* Chrome10-25,Safari5.1-6 */
+  background: linear-gradient(to bottom, #ffffff 0%,#f3f3f3 50%,#ededed 51%,#ffffff 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#ffffff',GradientType=0 );
+}
+.tabs__row{
+  padding-top: 22px;
+  .tab-pane {
+    display: none;
+  }
+  .tab-pane.active {
+    display: block;
+  }
+}
+.tab-content {
+  @at-root #{&}__content{
+    padding-top: 35px;
+    >h2, >h3, >h4{
+      margin-top:0;
+    }
+  }
+}
+.profile-no-sidebar {
+  .block-profile__image {
+    max-width: 31%;
+  }
+}
+@media (min-width: $screen-lg-min) {
+  .tabs__row{
+    padding-top: 56px;
+  }
+  .node--type-profile {
+    @at-root #{&}__block {
+      padding-left: 14px;
+      .field--name-body > h2{
+        margin-top:0;
+      }
+    }
+  }
+  .col-lg-profile {
+    @at-root #{&}__sidebar {
+      width: 24.5%;
+    }
+    @at-root #{&}__main {
+      width: 74.2%;
+    }
+  }
+}
+@media only screen and (max-width: $screen-md-max) {
+  .nav-tabs li {
+    width:100%;
+    margin-right: 0;
+    a {
+      width: 100%;
+      background-color: #efefef;
+    }
+  }
+}
+@media only screen and (max-width: $screen-md-max) {
+  .img-md-center{
+    img{
+      margin:0px auto;
+    }
+  }
+  .tabs__row {
+    .nav-tabs > li {
+      margin-bottom: 0;
+      a{
+        border-top-right-radius: 0;
+        border-top-left-radius: 0;
+      }
+      &.active{
+        a {
+          border: 1px solid #ccc !important;
+        }
+      }
+    }
+  }
+}
+@media only screen and (max-width: $screen-sm-max) {
+  .profile__content{
+    padding-top:20px;
+  }
+  .profile-no-sidebar {
+    .block-profile__image {
+      max-width: none;
+    }
+  }
+}

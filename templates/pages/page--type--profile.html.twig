@@ -1,0 +1,71 @@
+{#
+/**
+ * @file
+ * Theme implementation to display a Profile Content type.
+ *
+ * @see template_preprocess_page()
+ */
+#}
+{#
+  Render sidebar to be able to check if it is truly empty.
+  Issue: https://www.drupal.org/node/953034.
+#}
+{% set page_sidebar_rendered = render_var(page.page_sidebar) %}
+{# Set column class based on sidebar. #}
+{% set col_class = page_sidebar_rendered ? 'col-xs-12 col-md-8 col-lg-profile__main' : 'col-xs-12 profile-no-sidebar' %}
+
+{# Site Header. #}
+{% include base_path ~ directory ~ '/templates/pages/includes/site_header.html.twig' %}
+{# / Site Header. #}
+
+<div class="container">
+  <div class="row">
+    <div class="col-xs-12">
+      <div class="profile-page-title">
+        {{ title_prefix }}
+        <h1{{ title_attributes.addClass('page-title') }}>
+          {{ node.label }}
+        </h1>
+        {{ title_suffix }}
+      </div>
+    </div>
+  </div>
+</div>
+
+{# Main Content. #}
+<div class="site-content">
+  <div class="container">
+    <div class="row">
+      {% if page_sidebar_rendered %}
+        <div class="col-md-4 col-lg-profile__sidebar hidden-sm hidden-xs">
+          <aside class="site-sidebar" role="complementary">
+            {{ page.page_sidebar }}
+          </aside>
+        </div>
+      {% endif %}
+      <div class="{{ col_class }}">
+        <main class="content__main-content clearfix" role="main">
+          <div class="visually-hidden"><a id="main-content" tabindex="-1"></a></div>
+          {% if page.highlighted %}
+            {{ page.highlighted }}
+          {% endif %}
+          {% if page.above_content %}
+            {{ page.above_content }}
+          {% endif %}
+          {% if page.content %}
+            {{ page.content }}
+          {% endif %}
+          {% if page.below_content %}
+            {{ page.below_content }}
+          {% endif %}
+        </main>
+      </div>
+
+    </div>
+  </div>
+</div>
+{# / Main Content. #}
+
+{# Site Footer. #}
+{% include base_path ~ directory ~ '/templates/pages/includes/site_footer.html.twig' %}
+{# / Site Footer. #}

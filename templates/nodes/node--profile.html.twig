@@ -1,0 +1,63 @@
+{#
+/**
+ * @file
+ * Theme implementation for a profile node.
+ *
+ * @see template_preprocess_node()
+ */
+#}
+{%
+set classes = [
+'node',
+'node--type-' ~ node.bundle|clean_class,
+node.isPromoted() ? 'node--promoted',
+node.isSticky() ? 'node--sticky',
+not node.isPublished() ? 'node--unpublished',
+view_mode ? 'node--view-mode-' ~ view_mode|clean_class,
+'clearfix',
+]
+%}
+{% set col_class = profile_image_url ? 'col-xs-12 col-md-7' : 'col-sm-12' %}
+
+<article{{ attributes.addClass(classes) }}>
+  <div class="row">
+    {% if profile_image_url %}
+    <div class="col-xs-12 col-md-5 block-profile__image img-md-center">
+      <img src="{{  profile_image_url }}" alt="{{ node.field_profile_image.alt.value }}">
+    </div>
+    {% endif %}
+    <div class="{{ col_class }}">
+      <div{{ content_attributes.addClass('node__content', 'node--type-profile__block', 'clearfix') }}>
+        {{ content }}
+      </div>
+    </div>
+  </div>
+  <div class="tabs__row">
+    <div class="row">
+      <div class="col-xs-12">
+        <ul class="nav nav-tabs">
+          {% if node.field_tabs|length >0 %}
+            {% for cta_tab in node.field_tabs %}
+              <li class="{{ loop.first ? 'first active' : '' }}">
+                <a data-toggle="tab" href="#item-{{ loop.index }}" aria-expanded="false">{{ cta_tab.entity.field_tab_title.value  }}</a>
+              </li>
+            {% endfor %}
+          {% endif %}
+        </ul>
+        <div class="tabs__content">
+          {% if node.field_tabs|length >0 %}
+            {% for cta_tab in node.field_tabs %}
+              <div id="item-{{ loop.index }}" class="tab-pane fade {{ loop.first ? 'active in' : '' }}">
+                <div class="row">
+                  <div class="col-xs-12 col-md-12 tab-content__content">
+                    {{ cta_tab.entity.field_tab_body.value|raw  }}
+                  </div>
+                </div>
+              </div>
+            {% endfor %}
+          {% endif %}
+        </div>
+      </div>
+    </div>
+  </div>
+</article>

@@ -178,6 +178,13 @@ function orange_starter_preprocess_node(&$variables) {
         $variables['image_gallery'] = $image_gallery_images;
       }
     }
+    // Profile Content Type.
+    if ($node->getType() === 'profile') {
+      // Image.
+      if (isset($node->field_profile_image->entity)) {
+        $variables['profile_image_url'] = ImageStyle::load('profile_image')->buildUrl($node->field_profile_image->entity->getFileUri());
+      }
+    }
   }
 }
 
