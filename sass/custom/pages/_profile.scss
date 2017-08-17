@@ -40,6 +40,9 @@
     max-width: 31%;
   }
 }
+.nav-tabs > li.active > a:focus {
+  outline: 0;
+}
 @media (min-width: $screen-lg-min) {
   .tabs__row{
     padding-top: 56px;
