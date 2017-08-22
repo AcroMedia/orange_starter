@@ -185,9 +185,18 @@ function orange_starter_preprocess_node(&$variables) {
  * Implements hook_preprocess_page().
  */
 function orange_starter_preprocess_page(&$variables) {
+  $page_path = \Drupal::request()->getpathInfo();
+  $page_arg = explode('/', $page_path);
+  // Used on login /user page.
+  $variables['url_path'] = $page_arg;
+
   // Load the site name out of configuration.
   $config = \Drupal::config('system.site');
   $variables['site_name'] = $config->get('name');
+
+  $user_config = \Drupal::config('user.settings');
+  // Returns - Visitors_admin_approval, visitors, admin_only.
+  $variables['registeration_type'] = $user_config->get('register');
 
   // Homepage.
   if ($is_front_page = \Drupal::service('path.matcher')->isFrontPage()) {
@@ -222,4 +231,25 @@ function orange_starter_form_alter(&$form, FormStateInterface $form_state, $form
     // Update submit button text.
     $form['actions']['submit']['#value'] = t('Post Comment');
   }
+}
+
+/**
+ * Preprocess form Implements hook_form_user_login(&$variables).
+ */
+function orange_starter_form_user_login_form_alter(&$form, FormStateInterface $form_state) {
+  $form['name']['#title'] = t('Username or Email Address');
+  $form['name']['#description'] = t('Log in using your username or email address.');
+
+  $form['pass']['#title'] = t('Password');
+  $form['pass']['#description'] = t('Enter the password that accompanies your username.  <div class="custom-forgot-pass"><a href="/user/password" class="forgot-password">Forgot Password?</a></div>');
+}
+
+/**
+ * Preprocess form Implements hook_form_register_form(&$variables).
+ */
+function orange_starter_form_user_register_form_alter(&$form, FormStateInterface $form_state) {
+  $form['account']['pass']['#description'] = t('Provide a password for the new account in both fields.<br> Password must be at least 4 characters.');
+  $form['account']['name']['#description'] = t('Spaces are allowed; punctuation is not allowed except for periods, hyphens, apostrophes, and underscores.');
+  $form['account']['mail']['#description'] = t('A valid email address.');
+
 }

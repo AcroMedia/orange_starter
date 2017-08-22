@@ -1,0 +1,145 @@
+{#
+/**
+ * @file
+ * Theme implementation to display Product Detail page.
+  * @see template_preprocess_page()
+ * @see seven_preprocess_page()
+ * @see html.html.twig
+ */
+#}
+
+{# Define variables. #}
+{% if registeration_type =='admin_only' %}
+  {% set css_class = "disabled__registration" %}
+{% endif %}
+{% set create_account %}
+  <h3>{{ 'Don\'t Have An Account?'|t }}</h3>
+  <div class="section--description">{{ 'Create a new account using a valid email address. All emails from the system will be sent to this address.'}}</div>
+  <div class="action__wrapper">
+    <a href="/user/register" class="btn btn-primary" title="">{{ 'Create New Account'|t }}</a>
+  </div>
+{% endset %}
+{% set user_login %}
+  <h3>{{ 'Already Have An Account?'|t }}</h3>
+  <div class="section--description">{{ 'Log in using your email address..'}}</div>
+  <div class="action__wrapper">
+    <a href="/user/login" class="btn btn-primary" title="">{{ 'Customer Login'|t }}</a>
+  </div>
+{% endset %}
+{% set forgot_pass %}
+  <h3>{{ 'Forgot Your Password?'|t }}</h3>
+  <div class="action__wrapper">
+    <a href="/user/password" class="btn btn-primary" title="">{{ 'Request New Password'|t }}</a>
+  </div>
+{% endset %}
+
+
+{# Site Header. #}
+{% include base_path ~ directory ~ '/templates/pages/includes/site_header.html.twig' %}
+{# / Site Header. #}
+
+{# Main Content. #}
+<div class="site-content {{ css_class }}">
+  <div class="container">
+    <div class="row">
+
+      <div class="col-xs-12 page-user-login">
+        <main class="content__main-content clearfix" role="main">
+          <div class="visually-hidden"><a id="main-content" tabindex="-1"></a></div>
+          {% if page.highlighted %}
+            {{ page.highlighted }}
+          {% endif %}
+          {% if page.above_content %}
+            {{ page.above_content }}
+          {% endif %}
+          <div class="page-banner user-page-banner">
+            <div class="row">
+              <div class="col-xs-12">
+                <h1>{{ 'My Account'|t }}</h1>
+              </div>
+            </div>
+          </div>
+          <div class="page--inner">
+            <div class="row">
+              <div class="col-xs-12 col-md-6 section-user-input  pull-right">
+                <div class="user--login-form">
+                  <div class="row">
+                    <div class="col-xs-2 col-sm-lock col-md-lock col-xs-no-padding-right">
+                      <div class="encircle">
+                        <i class="fa fa-lock" aria-hidden="true"></i>
+                      </div>
+                    </div>
+                    <div class="col-xs-12 col-sm-9 col-md-8 col-lg-no-padding">
+                      <h3 class="current__{{ url_path.2 }}">
+                        {% if url_path.2 == 'login'  %}
+                          {{ 'Customer Login'|t }}
+                        {% elseif url_path.2 == 'register' %}
+                          {{ 'Create New Account'|t }}
+                        {% else %}
+                          {{ 'Forgot Your Password?'|t }}
+                        {% endif %}
+                      </h3>
+                    </div>
+                  </div>
+                  {{ page.content }}
+                </div>
+              </div>
+              <div class="col-xs-12 col-md-6 ">
+                <div class="login--actions">
+                  <div class="row">
+                    <div class="hidden-xs col-sm-2 col-icon-alt">
+                      <div class="encircle">
+                        {% if url_path.2 == 'login'  %}
+                          +
+                        {% else %}
+                          <i class="fa fa-lock" aria-hidden="true"></i>
+                        {% endif %}
+                      </div>
+                    </div>
+                    <div class="col-xs-12 col-sm-9">
+                      {% if url_path.2 == 'login'  %}
+                        {{ create_account }}
+                      {% else %}
+                        {{ user_login }}
+                      {% endif %}
+                    </div>
+                  </div>
+                </div>
+                <div class="login--actions">
+                  <div class="row">
+                    <div class="hidden-xs col-sm-2 col-icon-alt">
+                      <div class="encircle">
+                        {% if url_path.2 == 'password'  %}
+                          +
+                        {% else %}
+                          ?
+                        {% endif %}
+                      </div>
+                    </div>
+                    <div class="col-xs-12 col-sm-9">
+                      {% if url_path.2 == 'password'  %}
+                        {{ create_account }}
+                      {% else %}
+                        {# login #}
+                        {{ forgot_pass }}
+                      {% endif %}
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {% if page.below_content %}
+            {{ page.below_content }}
+          {% endif %}
+        </main>
+      </div>
+    </div>
+  </div>
+</div>
+{# / Main Content. #}
+
+{# Site Footer. #}
+{% include base_path ~ directory ~ '/templates/pages/includes/site_footer.html.twig' %}
+{# / Site Footer. #}

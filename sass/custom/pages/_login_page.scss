@@ -1,0 +1,143 @@
+.encircle{
+  font-size: 45px;
+  border-radius: 50%;
+  height: 86px;
+  border: 1px solid #cecece;
+  width: 86px;
+  text-align: center;
+  vertical-align: middle;
+  line-height: 86px;
+}
+.login--actions{
+  padding: 40px 0 50px;
+  border-bottom:1px solid #cecece;
+  &:first-child{
+  }
+
+  .btn-secondary{
+    border-radius: 0;
+  }
+}
+.action__wrapper{
+  padding-top: 40px;
+}
+.user-page-banner{
+  h1{
+    font-size: 30px;
+    border-bottom: 1px solid #cecece;
+    margin-bottom: 40px;
+    font-weight: 500;
+    padding-bottom: 14px;
+  }
+}
+.path-user-login .disabled__registration .login--actions:first-child {
+  display: none;
+}
+.path-user-password .disabled__registration  .login--actions:last-child{
+  display: none;
+}
+
+.page-user-login {
+  .page-title{
+    display:none;
+  }
+  #edit-contact{
+    display:none;
+  }
+  .confirm-parent, .password-parent {
+    margin: 1em 0;
+  }
+  .block-local-tasks-block {
+    display: none;
+  }
+  h3{
+    margin: 0 0 8px;
+    font-size: 26px;
+  }
+  label{
+    font-weight: normal;
+  }
+}
+.user--login-form{
+  padding: 36px 30px;
+  border: 1px solid #cecece;
+  form{
+    @media only screen and (min-width:1260px) {
+      padding-left: 30px;
+    }
+  }
+}
+.section-user-input{
+  h3{
+    margin: 17px 0 0;
+  }
+  .form-item, details{
+    max-width:354px;
+  }
+}
+.custom-forgot-pass{
+  padding-top: 20px;
+  a{
+    font-style: normal;
+    font-size: 16px;
+  }
+}
+details.captcha{
+  border: none;
+  summary{
+    display:none;
+  }
+  > .details-wrapper {
+    padding: 20px 0 0;
+  }
+}
+
+@media only screen and (max-width:1260px) {
+  .encircle{
+    width:60px;
+    height:60px;
+    line-height:60px;
+    font-size: 35px;
+  }
+  .section-user-input h3{
+    margin-top: 8px;
+  }
+}
+@media only screen and (min-width:1260px) {
+}
+@media only screen and (min-width:960px) {
+  .col-md-lock{
+    width: 23%;
+  }
+  .col-icon-alt{
+    width: 20%;
+  }
+}
+@media only screen and (max-width:460px) {
+  .col-xs-no-padding-right{
+    padding-right:0;
+  }
+  .col-xs-no-padding-left{
+    padding-left:0;
+  }
+  .user--login-form {
+    padding: 30px 15px;
+  }
+  .encircle {
+    width: 30px;
+    height: 30px;
+    line-height: 28px;
+    font-size: 15px;
+  }
+  .page-user-login h3 {
+    margin: 2px 0 0;
+    font-size: 23px;
+  }
+  .page-user-login .btn-primary {
+    padding: 7px 20px;
+    font-size: 16px;
+  }
+  .col-sm-lock{
+    display:none;
+  }
+}
