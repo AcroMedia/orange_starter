@@ -12,43 +12,22 @@ This custom theme uses the Orange Framework as a base theme.
   - `gulp`
 - The CSS will be compiled to: `css/style.css`
 
-=== Starting Your Project Theme ===
+## Starting Your New Custom Theme
 
-After you install Drupal you can start your project theme by copying the Orange Starter theme from: <code>\web\themes\contrib\orange_starter</code>
+This theme is meant to be copied and renamed to become your custom theme for your project. Follow the steps below to live a happy life. #blessed
 
-You can use Orange Starter as a starting point to your theme. You'll want to copy the 'orange_starter' theme folder into <code>\web\themes\custom</code> and rename the folder to match your project.
-
-'''IMPORTANT''' - Go into the copied theme and delete the following files BEFORE committing the theme to Git. <pre>
-.git (directory)
-.composer.json
-</pre> If you fail to do this before committing, you can fix it by: - move the folder out of the project, commit - move it back in with those files removed, commit
-
-Next, you'll also want to rename the following files, replacing 'orange_starter' with your new theme name, so they relate to your project theme and not the Orange Starter:
-
-<pre>
-# Open the file and change the Orange Starter text inside.
-config\schema\orange_starter.schema.yml
-
-# Open the file and change the Orange Starter text inside.
-orange_starter.breakpoints.yml
-
-# Open the file and change the Orange Starter text inside. Leave 'base theme: orange_framework' intact as the Orange Framework theme should always be the base theme.
-orange_starter.info.yml
-
-orange_starter.libraries.yml
-
-# Open the file and change the 'orange_starter' text inside.
-orange_starter.theme
-</pre>
-
-You can then enable your new theme through Drupal and disable the "Orange Starter" theme.
-
-See the below structure for an example of a copy of the Orange Starter theme, customized for the 'Content Hub' project theme:
-
-<pre>
-\web\themes\custom\example_theme\config\schema\example_theme.schema.yml
-\web\themes\custom\example_theme\example_theme.breakpoints.yml
-\web\themes\custom\example_theme\example_theme.info.yml
-\web\themes\custom\example_theme\example_theme.libraries.yml
-\web\themes\custom\example_theme\example_theme.theme
-</pre>
+- Copy/rename this theme folder into `/web/themes/custom/your_custom_theme_name`.
+- Remove the `.git` folder and `composer.json` file from your theme.
+- Rename the core theme filenames replacing `orange_starter` with the name of your new theme. List of core files below:
+  - `orange_starter.breakpoints.yml`
+  - `orange_starter.info.yml`
+  - `orange_starter.libraries.yml`
+  - `orange_starter.theme`
+  - `config/schema/orange_starter.schema.yml`
+- Within your theme folder, find and replace the string `orange_starter` with your new theme name within all the files. This will change all the hook references, libraries etc. I would avoid manually sifting through the files as you'll likely miss something within one of the templates.
+- Make sure to update the `Orange Starter` label/name strings within `config/schema/orange_starter.schema` and `orange_starter.info.yml` as well.
+- Update the `screenshot.png` and `favicon.ico` files to match your new theme.
+- Update the color and font variables within `sass/custom/_variables.scss` to quickly adjust the theme to be more geared towards your project. Chat with a Creative department resource if you need help choosing appropriate choices.
+- Update the `README.md` with project specific details, and remove this `Starting Your New Custom Theme` section.
+- If you run into any issues, just call my name cause I'll hear you scream.
+- Master, master!

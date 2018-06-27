@@ -11,6 +11,18 @@
     }
   });
 
+  // Mobile Toggle.
+  // Toggle active classes for a piece of content.
+  $('.js-mobile-toggle').click(function (e) {
+    var $this = $(this);
+    var $toggleContent = $this.data('toggle-content');
+
+    $this.toggleClass('is-active');
+    $('.' + $toggleContent).toggleClass('is-active');
+
+    e.preventDefault();
+  });
+
   // Mobile Overlay.
   $('.mobile-overlay').click(function(e) {
     $(this).fadeOut('fast');
@@ -67,19 +79,6 @@
   // Add search input placeholder.
   $('.block-search input.form-search, .search-page-form input.form-search').attr('placeholder', Drupal.t('Enter keyword...'));
 
-  // Homepage Carousel Slider.
-  if ($('.homepage-carousel-slider').length) {
-    $('.homepage-carousel-slider').flexslider({
-      animation: 'fade',
-      slideshow: true,
-      controlNav: true,
-      directionNav: false,
-      smoothHeight: true,
-      prevText: '',
-      nextText: ''
-    });
-  }
-
   // Site search submit trigger.
   if ($('.form-search-submit-trigger').length) {
     $('.form-search-submit-trigger').click(function(e) {
@@ -88,4 +87,31 @@
       e.preventDefault();
     });
   }
+
+  // Form submit trigger.
+  if ($('.form-submit--trigger').length) {
+    $('.form-submit--trigger').click(function(e) {
+      // Submit the parent form.
+      $(this).parents('form').submit();
+      e.preventDefault();
+    });
+  }
+
+  // Magnific Popup Gallery.
+  if ($('.magnific-popup-gallery').length) {
+    $('.magnific-popup-gallery').magnificPopup({
+      type: 'image',
+      gallery: {
+        enabled: true
+      }
+    });
+  }
+
+  // Tabs.
+  if ($('.nav-tabs').length) {
+    $('.nav-tabs').each(function () {
+      $(this).tabCollapse();
+    });
+  }
+
 })(jQuery, Drupal);
