@@ -1,7 +1,7 @@
 {#
 /**
  * @file
- * Theme implementation for a Carousel Slide paragraph.
+ * Theme implementation for a Content Carousel paragraph.
  *
  * Available variables:
  * - paragraph: Full paragraph entity.
@@ -38,8 +38,10 @@
  * @ingroup themeable
  */
 #}
+{{ attach_library('orange_starter/paragraph-content-carousel') }}
 {%
   set classes = [
+    'component-content-carousel',
     'paragraph',
     'paragraph--type--' ~ paragraph.bundle|clean_class,
     view_mode ? 'paragraph--view-mode--' ~ view_mode|clean_class,
@@ -48,58 +50,7 @@
 {% block paragraph %}
   <div{{ attributes.addClass(classes) }}>
     {% block content %}
-      <div class="component-carousel-slide">
-        {# Slide link. #}
-        {% if content.field_link.0['#url'] %}
-          <div class="component-carousel-slide__link">
-            {{ content.field_link }}
-          </div>
-        {% endif %}
-        {# / Slide link. #}
-
-        {# Mobile slide image. #}
-        {% if paragraph.field_image_2 is not empty %}
-          {% set has_mobile_image = true %}
-          <div class="component-carousel-slide__image visible-xs-block">
-            {{ content.field_image_2 }}
-          </div>
-        {% endif %}
-        {# / Mobile slide image. #}
-
-        {# Slide image. #}
-        {% if paragraph.field_image is not empty %}
-          <div class="component-carousel-slide__image {{ has_mobile_image ? 'hidden-xs' : '' }}">
-            {{ content.field_image }}
-          </div>
-        {% endif %}
-        {# / Slide image. #}
-
-        {# Slide content. #}
-        {% if content.field_string or content.field_text_long or (content.field_link.0['#url'] and paragraph.field_link.title) %}
-          <div class="component-carousel-slide__content-wrapper">
-            <div class="component-carousel-slide__content">
-              {% if content.field_string %}
-                <div class="component-carousel-slide__title">
-                  <h2>{{ content.field_string }}</h2>
-                </div>
-              {% endif %}
-
-              {% if content.field_text_long %}
-                <div class="component-carousel-slide__body">
-                  {{ content.field_text_long }}
-                </div>
-              {% endif %}
-
-              {% if content.field_link.0['#url'] and paragraph.field_link.title %}
-                <div class="component-carousel-slide__button">
-                  <a href="{{ content.field_link.0['#url'] }}" class="btn btn-primary">{{ content.field_link.0['#title'] }}</a>
-                </div>
-              {% endif %}
-            </div>
-          </div>
-        {% endif %}
-        {# / Slide content. #}
-      </div>
+      {{ content }}
     {% endblock %}
   </div>
 {% endblock paragraph %}

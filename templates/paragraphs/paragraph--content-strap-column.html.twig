@@ -1,7 +1,7 @@
 {#
 /**
  * @file
- * Theme implementation for a Webform + Content paragraph.
+ * Theme implementation for a Content Strap Item paragraph.
  *
  * Available variables:
  * - paragraph: Full paragraph entity.
@@ -40,45 +40,65 @@
 #}
 {%
   set classes = [
-    'component-webform-content',
+    'component-content-strap-column',
     'paragraph',
     'paragraph--type--' ~ paragraph.bundle|clean_class,
     view_mode ? 'paragraph--view-mode--' ~ view_mode|clean_class,
     not paragraph.isPublished() ? 'paragraph--unpublished'
   ]
 %}
+{% set body_attributes = create_attribute() %}
+{% set overlay_attributes = create_attribute() %}
+{% set style_value = '' %}
+
+{# Background Color. #}
+{% if paragraph.field_bg_color.color %}
+  {% set bg_color = paragraph.field_bg_color.color %}
+  {% set style_value = style_value ~ 'background-color: ' ~ bg_color ~ ';' %}
+  {% set attributes = attributes.setAttribute('style', style_value) %}
+{% endif %}
+
+{# Overlay / Background Image. #}
+{% if paragraph.field_image.entity.fileuri %}
+  {% set opacity_value = 1 %}
+  {% if paragraph.field_opacity.value %}
+    {% set opacity_value = paragraph.field_opacity.value / 100 %}
+  {% endif %}
+
+  {% set overlay_attributes = overlay_attributes.addClass('component-content-strap-column__overlay') %}
+
+  {% set bg_image = paragraph.field_image.entity.fileuri|image_style('background') %}
+  {% set overlay_style_value = overlay_style_value ~ 'background-image: url(' ~ bg_image ~ ');' %}
+
+  {% set overlay_style_value = overlay_style_value ~ ' opacity: ' ~ opacity_value ~ ';' %}
+
+  {% set overlay_attributes = overlay_attributes.setAttribute('style', overlay_style_value) %}
+  {% set attributes = attributes.addClass('component-content-strap-column--image') %}
+{% endif %}
+
+{% if paragraph.field_color.color %}
+  {% set color_id = 'paragraph-' ~ paragraph.id.value ~ '-color' %}
+  {% set body_attributes = body_attributes.setAttribute('id', color_id) %}
+  {% set body_attributes = body_attributes.addClass('override-text-color') %}
+  {% set tags = ['h1','h2','h3','h4','h5','h6','h7','h8','div','span','p','a','blockquote','ul','ol','label','table','tr','td','.base-accordion__header::before'] %}
+  <style type="text/css">
+    {% for tag in tags %}#{{ color_id }} {{ tag }}{% if not loop.last %},{% endif %}{% endfor %} {
+      color: {{ paragraph.field_color.color }};
+    }
+  </style>
+{% endif %}
+
 {% block paragraph %}
   <div{{ attributes.addClass(classes) }}>
+    {% if paragraph.field_image.entity.fileuri %}
+      <div{{ overlay_attributes }}></div>
+    {% endif %}
     {% block content %}
-      <div class="component-webform-content__container">
-        <div class="row">
-          {% set col_class = 'col-md-6' %}
-          {% set col2_class = 'col-md-6' %}
-          {% set content_body_class = '' %}
-          {% if paragraph.field_alignment.value and (paragraph.field_alignment.value == 'right') %}
-            {% set col_class = 'col-md-6 col-md-push-6' %}
-            {% set col2_class = 'col-md-6 col-md-pull-6' %}
-            {% set content_body_class = 'component-webform-content__body--webform-right' %}
+      <div class="component-content-strap-column__content" data-aos="fade-up">
+        <div{{ body_attributes.addClass('component-content-strap-column__body') }}>
+          {% if paragraph.field_paragraphs_reference.0.target_id %}
+            {{ content.field_paragraphs_reference }}
           {% endif %}
-          <div class="component-webform-content__col {{ col_class }}">
-            {% if paragraph.field_text_long.value %}
-              <div class="component-webform-content__intro">
-                {{ content.field_text_long }}
-              </div>
-            {% endif %}
-            {% if content.field_webform_reference %}
-              <div class="component-webform-content__form">
-                {{ content.field_webform_reference }}
-              </div>
-            {% endif %}
-          </div>
-          <div class="component-webform-content__col {{ col2_class }}">
-            {% if content.field_paragraphs_reference %}
-              <div class="component-webform-content__body {{ content_body_class }}">
-                {{ content.field_paragraphs_reference }}
-              </div>
-            {% endif %}
-          </div>
         </div>
       </div>
     {% endblock %}

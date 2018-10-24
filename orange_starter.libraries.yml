@@ -24,10 +24,40 @@ slick:
     - core/jquery
     - core/drupal
 
+aos:
+  version: 1.x
+  css:
+    theme:
+      js/contrib/aos/aos.css: { media: all }
+  js:
+    js/contrib/aos/aos.js: {}
+    js/custom/aos.js: {}
+  dependencies:
+    - core/jquery
+    - core/drupal
+
 paragraph-carousel:
   version: 1.x
   js:
     js/custom/paragraphs/carousel.js: {}
+  dependencies:
+    - core/jquery
+    - core/drupal
+    - orange_starter/slick
+
+paragraph-content-carousel:
+  version: 1.x
+  js:
+    js/custom/paragraphs/content-carousel.js: {}
+  dependencies:
+    - core/jquery
+    - core/drupal
+    - orange_starter/slick
+
+paragraph-logo-carousel:
+  version: 1.x
+  js:
+    js/custom/paragraphs/logo-carousel.js: {}
   dependencies:
     - core/jquery
     - core/drupal

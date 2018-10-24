@@ -9,6 +9,7 @@ use Drupal\Core\Template\Attribute;
 use Drupal\image\Entity\ImageStyle;
 use Drupal\taxonomy\Entity\Term;
 use Drupal\Core\Url;
+use Drupal\node\NodeInterface;
 use Drupal\Core\Form\FormStateInterface;
 use Drupal\Core\Entity\ContentEntityForm;
 use Drupal\Core\Entity\Display\EntityFormDisplayInterface;
@@ -26,7 +27,9 @@ use Drupal\paragraphs\Entity\Paragraph;
 function orange_starter_theme_suggestions_page_alter(array &$suggestions, array $variables) {
   // Add content type suggestions.
   if ($node = \Drupal::request()->attributes->get('node')) {
-    array_splice($suggestions, 1, 0, 'page__type__' . $node->getType());
+    if ($node instanceof NodeInterface) {
+      array_splice($suggestions, 1, 0, 'page__type__' . $node->getType());
+    }
   }
 
   // Add taxonomy vocabulary suggestions.
@@ -85,6 +88,18 @@ function orange_starter_preprocess_html(&$variables) {
 }
 
 /**
+ * Implements hook_theme_suggestions_taxonomy_term_alter().
+ */
+function orange_starter_theme_suggestions_taxonomy_term_alter(array &$suggestions, array $variables) {
+  $term = $variables['elements']['#taxonomy_term'];
+  $sanitized_view_mode = strtr($variables['elements']['#view_mode'], '.', '_');
+  // Add view mode theme suggestions.
+  $suggestions[] = 'taxonomy_term__' . $sanitized_view_mode;
+  $suggestions[] = 'taxonomy_term__' . $term->bundle() . '__' . $sanitized_view_mode;
+  $suggestions[] = 'taxonomy_term__' . $term->id() . '__' . $sanitized_view_mode;
+}
+
+/**
  * Implements hook_theme_suggestions_alter() for blocks.
  */
 function orange_starter_theme_suggestions_block_alter(array &$suggestions, array $variables) {
@@ -94,6 +109,22 @@ function orange_starter_theme_suggestions_block_alter(array &$suggestions, array
     $bundle = $elements['content']['#block_content']->bundle();
     // Set suggestion based on block type.
     $suggestions[] = 'block__type__' . $bundle;
+  }
+}
+
+/**
+ * Implements hook_theme_suggestions_HOOK_alter() for inputs.
+ */
+function orange_starter_theme_suggestions_input_alter(&$suggestions, array $variables) {
+  $element = $variables['element'];
+
+  // Set suggestion for inputs within nested paragraphs.
+  if (isset($element['#attributes']['data-paragraph-parent'])) {
+    array_splice($suggestions, 1, 0, 'input__' . $element['#type'] . '__' . 'paragraph__parent' . '__' . $element['#attributes']['data-paragraph-parent']);
+  }
+  // Set suggestion for inputs within paragraphs.
+  if (isset($element['#attributes']['data-paragraph'])) {
+    array_splice($suggestions, 1, 0, 'input__' . $element['#type'] . '__' . 'paragraph' . '__' . $element['#attributes']['data-paragraph']);
   }
 }
 
@@ -142,6 +173,8 @@ function orange_starter_preprocess_page(&$variables) {
   // Load the site name out of configuration.
   $config = \Drupal::config('system.site');
   $variables['site_name'] = $config->get('name');
+
+  $variables['route_name'] = \Drupal::routeMatch()->getRouteName();
 }
 
 /**
@@ -160,6 +193,36 @@ function orange_starter_preprocess_taxonomy_term(&$variables) {
  * Implements hook_form_alter().
  */
 function orange_starter_form_alter(&$form, FormStateInterface $form_state, $form_id) {
+  // Webforms.
+  if ((isset($form['#entity_type'])) && ($form['#entity_type'] == 'webform_submission')) {
+    $paragraph_matches = [];
+
+    // Check for webforms within paragraphs.
+    if (preg_match('/paragraph_([0-9]+)/', $form_id, $paragraph_matches)) {
+      $paragraph_id = $paragraph_matches[1];
+      $paragraph = Paragraph::load($paragraph_id);
+
+      if ($paragraph = Paragraph::load($paragraph_id)) {
+        $paragraph_type = $paragraph->bundle();
+
+        // Set paragraph attribute.
+        $form['actions']['submit']['#attributes']['data-paragraph'] = $paragraph_type;
+
+        // Paragraph parent.
+        if ($paragraph->parent_id->value) {
+          $paragraph_parent_id = $paragraph->parent_id->value;
+
+          if ($paragraph_parent = Paragraph::load($paragraph_parent_id)) {
+            $paragraph_parent_type = $paragraph_parent->bundle();
+
+            // Set paragraph parent attribute.
+            $form['actions']['submit']['#attributes']['data-paragraph-parent'] = $paragraph_parent_type;
+          }
+        }
+      }
+    }
+  }
+
   // Comment form.
   if ($form_id == 'comment_node_comment_form') {
     // Update submit button text.
@@ -201,6 +264,35 @@ function orange_starter_preprocess_input(&$variables) {
     if (isset($variables['element']['#button_type'])) {
       $variables['button_type'] = $variables['element']['#button_type'];
     }
+  }
+}
+
+/**
+ * Implements hook_preprocess_form_element(&$variables).
+ */
+function orange_starter_preprocess_form_element(&$variables) {
+  $variables['label']['#attributes']['data-element-type'] = $variables['element']['#type'];
+}
+
+/**
+ * Implements hook_preprocess_form_element_label(&$variables).
+ */
+function orange_starter_preprocess_form_element_label(&$variables) {
+  if (isset($variables['element'])) {
+    $variables['attributes'] = array_merge($variables['attributes'], $variables['element']['#attributes']);
+
+    if (isset($variables['element']['#attributes']['data-element-type'])) {
+      $variables['element_type'] = $variables['element']['#attributes']['data-element-type'];
+    }
+  }
+}
+
+/**
+ * Implements hook_preprocess_fieldset(&$variables).
+ */
+function orange_starter_preprocess_fieldset(&$variables) {
+  if (isset($variables['element']['#type'])) {
+    $variables['element_type'] = $variables['element']['#type'];
   }
 }
 
