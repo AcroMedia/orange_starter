@@ -181,9 +181,11 @@ function orange_starter_theme_suggestions_page_alter(array &$suggestions, array 
  * Add body classes if certain regions have content.
  */
 function orange_starter_preprocess_html(&$variables) {
-  // Page title variable.
   $request = \Drupal::request();
   $route_match = \Drupal::routeMatch();
+  $route_name = $route_match->getRouteName();
+
+  // Page title variable.
   $title = \Drupal::service('title_resolver')->getTitle($request, $route_match->getRouteObject());
   if ($title && is_string($title)) {
     $variables['page_title'] = $title;
@@ -200,6 +202,11 @@ function orange_starter_preprocess_html(&$variables) {
 
     // Set variable for taxonomy term's name.
     $variables['term_name'] = $term->getName();
+  }
+
+  // User profile variable.
+  if ($route_name && $route_name == 'entity.user.canonical') {
+    $variables['user_profile'] = TRUE;
   }
 }
 

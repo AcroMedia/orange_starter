@@ -18,6 +18,9 @@
 @import 'content';
 @import 'comments';
 
+// Blocks.
+@import 'blocks/content';
+
 // Nodes.
 @import 'nodes/page';
 @import 'nodes/homepage';
@@ -41,6 +44,7 @@
 @import 'paragraphs/gallery';
 @import 'paragraphs/tabs';
 @import 'paragraphs/webform';
+@import 'paragraphs/notice-strap';
 
 // Form Floating Labels.
 @import 'form-floating-labels';

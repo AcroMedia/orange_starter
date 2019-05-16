@@ -14,6 +14,14 @@ global-styling:
     - orange_starter/bootstrap
     - orange_starter/form-floating-labels
 
+js-cookie:
+  version: 1.x
+  js:
+    js/contrib/js-cookie/js.cookie.js: {}
+  dependencies:
+    - core/jquery
+    - core/drupal
+
 slick:
   version: 1.x
   css:
@@ -72,6 +80,15 @@ paragraph-logo-carousel:
     - core/jquery
     - core/drupal
     - orange_starter/slick
+
+paragraph-notice-strap:
+  version: 1.x
+  js:
+    js/custom/paragraphs/notice-strap.js: {}
+  dependencies:
+    - core/jquery
+    - core/drupal
+    - orange_starter/js-cookie
 
 bootstrap:
   version: 1.x
