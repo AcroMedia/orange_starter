@@ -37,20 +37,25 @@
  */
 #}
 {% block page_header %}
+  {% if page.above_site %}
+    <div class="above-site">
+      {{ page.above_site }}
+    </div>
+  {% endif %}
+
   {# Mobile overlays. #}
   {% if page.mobile_nav %}
     {% if page.site_search %}
       <div class="mobile-search-overlay mobile-overlay">
         <div class="mobile-search-overlay__content mobile-overlay__content">
-          <a href="#" class="mobile-search-overlay__close mobile-overlay__close">
+          <a href="#" class="mobile-search-overlay__close mobile-overlay__close" aria-label="{{ 'Close'|t }}">
             <span class="fa fa-times" aria-hidden="true"></span>
           </a>
 
           <div class="mobile-search-form">
-            {{ page.site_search }}
-            <a class="mobile-search-form__submit" href="#" title="{{ 'Search'|t }}">
-              <span class="fa fa-search" aria-hidden="true"></span>
-            </a>
+            <div class="mobile-search-form__forms">
+              {{ page.site_search }}
+            </div>
           </div>
         </div>
       </div>
@@ -59,7 +64,7 @@
     <div class="mobile-nav-overlay mobile-overlay">
       <div class="mobile-nav-overlay__content mobile-overlay__content clearfix">
         <header class="mobile-nav-overlay__header clearfix" role="banner">
-          <a href="#" class="mobile-nav-overlay__close mobile-overlay__close">
+          <a href="#" class="mobile-nav-overlay__close mobile-overlay__close" aria-label="{{ 'Close'|t }}">
             <span class="fa fa-times" aria-hidden="true"></span>
           </a>
         </header>
@@ -115,7 +120,9 @@
 
           {% if page.site_search %}
             <div class="site-header__search hidden-xs">
-              {{ page.site_search }}
+              <div class="site-header__search-forms">
+                {{ page.site_search }}
+              </div>
             </div>
           {% endif %}
         </div>

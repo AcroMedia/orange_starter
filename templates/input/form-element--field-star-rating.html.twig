@@ -1,7 +1,7 @@
 {#
 /**
  * @file
- * Default theme implementation for a form element.
+ * Theme for: Star Rating field.
  *
  * Available variables:
  * - attributes: HTML attributes for the containing element.
@@ -45,79 +45,16 @@
  * @ingroup templates
  */
 #}
-{# Check for the address line 2 field. #}
-{% if (element_id) and ('address-line2' in element_id) %}
-  {% set is_address_line2 = true %}
+{% if label_display in ['before', 'invisible'] %}
+  {{ label }}
 {% endif %}
-{# Set floating label class. #}
-{%
-  if (name != 'site_keyword') and
-  (type != 'fivestar') and
-  (is_js_text_widget is not defined) and
-  (type == 'textfield' or
-  type == 'textarea' or
-  type == 'email' or
-  type == 'number' or
-  type == 'select' or
-  type == 'password' or
-  type == 'tel' or
-  type == 'telephone')
-%}
-  {% set floating_label = 'form-item--floater' %}
+{% if prefix is not empty %}
+  {{ prefix }}
 {% endif %}
-{%
-  set classes = [
-    'form-item',
-    'js-form-item',
-    'form-type-' ~ type|clean_class,
-    'js-form-type-' ~ type|clean_class,
-    'form-item-' ~ name|clean_class,
-    'js-form-item-' ~ name|clean_class,
-    (floating_label) and (title_display in ['after', 'before']) or (is_address_line2) ? floating_label,
-    title_display not in ['after', 'before'] ? 'form-no-label',
-    disabled == 'disabled' ? 'form-disabled',
-    is_form_group ? 'form-group',
-    is_radio ? 'radio',
-    is_checkbox ? 'checkbox',
-    is_autocomplete ? 'form-autocomplete',
-    errors ? 'error has-error'
-  ]
-%}
-{%
-  set description_classes = [
-    'description',
-    'help-block',
-    description_display == 'invisible' ? 'visually-hidden',
-  ]
-%}
-<div{{ attributes.addClass(classes) }}>
-  {% if label_display in ['before', 'invisible'] %}
-    {{ label }}
-  {% endif %}
-
-  {% if prefix is not empty %}
-    {{ prefix }}
-  {% endif %}
-
-  {% if description_display == 'before' and description.content %}
-    <div{{ description.attributes }}>
-      {{ description.content }}
-    </div>
-  {% endif %}
-
-  {{ children }}
-
-  {% if suffix is not empty %}
-    {{ suffix }}
-  {% endif %}
-
-  {% if label_display == 'after' %}
-    {{ label }}
-  {% endif %}
-
-  {% if description_display in ['after', 'invisible'] and description.content %}
-    <div{{ description.attributes.addClass(description_classes) }}>
-      {{ description.content }}
-    </div>
-  {% endif %}
-</div>
+{{ children }}
+{% if suffix is not empty %}
+  {{ suffix }}
+{% endif %}
+{% if label_display == 'after' %}
+  {{ label }}
+{% endif %}

@@ -1,0 +1,150 @@
+/**
+* Site Search.
+*/
+.view-site-search {
+  clear: both;
+  margin: 0;
+  padding: 10px 0 0 0;
+
+  .views-exposed-form {
+    position: relative;
+    margin: 0 0 20px 0;
+    padding: 0;
+    max-width: 400px;
+
+    .form-item {
+      float: none;
+      margin: 0;
+      padding: 0;
+
+      label {
+        display: none;
+      }
+      .form-optional {
+        display: none;
+      }
+    }
+    .form-control {
+      max-width: 100%;
+      width: 100%;
+    }
+    .form-submit--trigger {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      display: block;
+      margin: 0;
+      padding: 0;
+      text-decoration: none;
+      z-index: 1;
+
+      &:hover {
+        text-decoration: none;
+      }
+      // Search icon.
+      &:before {
+        @include fa-icon();
+        content: $fa-var-search;
+        font-size: 19px;
+        color: $gray-base;
+        transition: color .2s ease-in-out;
+      }
+      &:focus:before,
+      &:hover:before {
+        color: $gray;
+      }
+    }
+    .form-actions {
+      margin: 0;
+      padding: 0;
+    }
+    // Hide form submit since we are using the pseudo submit.
+    .form-submit {
+      display: none;
+    }
+  }
+  .view-content {
+    clear: both;
+    margin: 40px 0 0 0;
+    padding: 40px 0 0 0;
+    border-top: 1px solid $gray-border;
+  }
+  .views-row {
+    clear: both;
+    margin: 0 0 35px 0;
+    padding: 0;
+
+    h4 {
+      margin-top: 0;
+    }
+  }
+}
+
+.block-search {
+  position: relative;
+
+  .form-search-submit-trigger {
+    display: block;
+  }
+  .form-submit {
+    display: none;
+  }
+  .form-item,
+  .form-actions {
+    position: relative;
+    margin: 0;
+    padding: 0;
+  }
+}
+
+// Search Results.
+body.path-search {
+  .block-page-title-block {
+    display: none;
+  }
+  .search-form {
+    > .form-wrapper:first-child {
+      position: relative;
+
+      // Search submit.
+      input.form-submit {
+        display: none;
+      }
+      .form-submit--trigger {
+        position: absolute;
+        top: 9px;
+        left: 152px;
+        display: block;
+        margin: 0;
+        padding: 0;
+        color: $gray-base;
+        text-decoration: none;
+        z-index: 1;
+
+        &:hover,
+        &:focus {
+          color: $gray;
+          text-decoration: none;
+        }
+        // Icon.
+        &::before {
+          @include fa-icon();
+          content: $fa-var-search;
+          font-size: 19px;
+        }
+      }
+      .form-control {
+        padding-right: 40px;
+      }
+    }
+    .form-item.form-type-search {
+      margin: 0 0 20px;
+      padding: 0;
+      width: 180px;
+
+      label {
+        display: none;
+      }
+    }
+  }
+}

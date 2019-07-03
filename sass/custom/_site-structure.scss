@@ -108,30 +108,27 @@
   .bef-exposed-form .form-item {
     margin: 0;
   }
+  .form-search-submit-trigger,
   .form-submit--trigger {
     position: absolute;
-    top: 3px;
+    top: 5px;
     right: 10px;
     display: block;
     margin: 0;
     padding: 0;
+    color: $gray-base;
     text-decoration: none;
     z-index: 1;
 
-    &:hover {
+    &:hover,
+    &:focus {
+      color: $gray;
       text-decoration: none;
     }
-    &:before {
-      display: block;
-      content: "\e003";
-      font-family: $f-glyphicons;
+    &::before {
+      @include fa-icon();
+      content: $fa-var-search;
       font-size: 19px;
-      color: $gray-base;
-      transition: color .2s ease-in-out;
-    }
-    &:focus:before,
-    &:hover:before {
-      color: $gray;
     }
   }
 }
@@ -154,7 +151,7 @@
  * Footer navigation.
  */
 .footer-nav {
-  margin: 0 0 50px 0;
+  margin: 0 0 50px;
 
   .menu__link {
     display: block;

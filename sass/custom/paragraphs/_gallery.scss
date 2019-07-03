@@ -82,6 +82,9 @@
 }
 
 // Gallery - Nav Slider.
+.product-slider--no-thumbnails .product-slider__nav-slider {
+  display: none;
+}
 .component-gallery__nav-slider {
   margin: 0;
   padding: 0 40px;

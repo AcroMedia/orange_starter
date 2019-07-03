@@ -17,9 +17,12 @@
 @import 'navigation';
 @import 'content';
 @import 'comments';
+@import 'site-search';
+@import 'user';
 
 // Blocks.
 @import 'blocks/content';
+@import 'blocks/modal';
 
 // Nodes.
 @import 'nodes/page';
@@ -52,8 +55,8 @@
 // CSS Effects.
 @import 'effects';
 
-// Live CSS.
-@import 'live-css';
-
 // Maintenance Page.
 @import 'maintenance-page';
+
+// Live CSS.
+@import 'live-css';

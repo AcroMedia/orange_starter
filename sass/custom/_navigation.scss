@@ -230,7 +230,7 @@
 .mobile-search-form {
   position: relative;
   margin: 0;
-  padding: 0 34px 5px 0;
+  padding: 0 0 5px;
   border-bottom: 2px solid #818181;
 
   .block-search .form-search-submit-trigger {
@@ -244,13 +244,13 @@
   .form-item {
     display: none;
   }
-  .form-item-search {
+  .form-item-search,
+  .form-item-site-keyword {
     display: block;
   }
   label,
   .form-submit,
-  .form-optional,
-  .search-block-form .form-search-submit-trigger {
+  .form-optional {
     display: none;
   }
   .container-inline div,
@@ -261,9 +261,10 @@
     float: none;
   }
   .form-search,
-  .form-item-search input {
+  .form-item-search input,
+  .form-item-site-keyword input {
     margin: 0;
-    padding: 0;
+    padding: 0 34px 0 0;
     width: 100%;
     max-width: 100%;
     height: auto;
@@ -282,9 +283,10 @@
     }
   }
 }
-.mobile-search-form__submit {
+.mobile-search-form .form-submit--trigger {
   position: absolute;
-  bottom: 11px;
+  display: block;
+  bottom: 8px;
   right: 0;
   font-size: 25px;
   line-height: 25px;
@@ -292,12 +294,19 @@
   text-decoration: none;
   vertical-align: top;
 
+  // Search icon.
+  &:before {
+    @include fa-icon();
+    content: $fa-var-search;
+    transition: color .2s ease-in-out;
+  }
   &:hover,
   &:focus {
     color: $c-primary;
     text-decoration: none;
   }
   span {
+    display: none;
     vertical-align: top;
   }
 }
@@ -311,10 +320,6 @@
   margin: 0 0 25px 0;
   padding: 0;
   text-align: left;
-
-  @media (min-width: $screen-sm-min) {
-    text-align: center;
-  }
 }
 .mobile-nav-overlay__header {
   clear: both;
@@ -338,9 +343,6 @@
   outline: none;
   z-index: 10;
 
-  @media (min-width: $screen-sm-min) {
-    color: #818181;
-  }
   &:hover,
   &:focus {
     color: lighten($gray-dark, 20%);
@@ -457,6 +459,9 @@
   clear: both;
   margin: 0 0 20px 0;
   padding: 0;
+}
+.social-media-sharing-nav--product {
+  margin: 0;
 }
 .social-media-sharing-menu {
   margin: 0;
