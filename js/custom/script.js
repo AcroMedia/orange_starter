@@ -35,7 +35,7 @@
   // Mobile Search.
   $('.mobile-control-nav .menu__item--search a').click(function(e) {
     $('.mobile-search-overlay').fadeIn('fast');
-    $('.mobile-search-form .form-type-search input').focus();
+    $('.mobile-search-form input.form-search').focus();
     e.preventDefault();
   });
   $('.mobile-search-form__submit').click(function(e) {
@@ -50,7 +50,7 @@
   });
   $('.mobile-overlay__close').click(function(e) {
     $('.mobile-overlay').fadeOut('fast');
-    $('.mobile-search-form .form-type-search input').blur();
+    $('.mobile-search-form input.form-search').blur();
     e.preventDefault();
   });
 
@@ -76,8 +76,8 @@
     e.preventDefault();
   });
 
-  // Add search input placeholder.
-  $('.block-search input.form-search,.search-form input.form-search').attr('placeholder', Drupal.t('Enter keyword...'));
+  // Add Site Header search input placeholder.
+  $('.site-header__search .form-type-search input').attr('placeholder', Drupal.t('Enter keyword...'));
 
   // Site search submit trigger.
   if ($('.form-search-submit-trigger').length) {

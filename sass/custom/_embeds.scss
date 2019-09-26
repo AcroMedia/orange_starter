@@ -1,0 +1,13 @@
+/**
+ * Embeds.
+ */
+.embedded-entity {
+  &.align-left {
+    float: left;
+    margin: 0 30px 0 0;
+  }
+  &.align-right {
+    float: right;
+    margin: 0 0 0 30px;
+  }
+}

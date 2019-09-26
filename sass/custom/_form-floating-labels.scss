@@ -71,37 +71,3 @@
   // Increase width to account for optional label.
   width: 180px;
 }
-
-/**
- * Commerce.
- */
-
-// Product Pages.
-.product__form .form-item--floater {
-  // Disabled State.
-  // Override disabled style to not confuse users with single value attributes (they are disabled by default).
-  &.form-disabled {
-    .form-control {
-      cursor: auto;
-    }
-    opacity: 1;
-  }
-}
-
-// Store - Product Listing.
-.store-filters .views-exposed-form .form-item-sort-bef-combine .select-wrapper {
-  width: 190px;
-}
-
-// Credit Card Expiration.
-.commerce-checkout-flow .credit-card-form__expiration .form-item {
-  min-width: 88px;
-}
-// Coupon Code.
-div[id*="edit-coupon-redemption-form"] {
-  .form-submit {
-    padding-top: 14px;
-    padding-bottom: 15px;
-    vertical-align: top;
-  }
-}

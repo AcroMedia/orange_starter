@@ -588,6 +588,6 @@ function orange_starter_preprocess_menu_local_task(&$variables) {
     $variables['link']['#title'] = t('Dashboard');
   }
   if ($url instanceof Url && $url->getRouteName() == 'entity.user.edit_form') {
-    $variables['link']['#title'] = t('Account Details');
+    $variables['link']['#title'] = t('Account details');
   }
 }

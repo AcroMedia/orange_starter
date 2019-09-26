@@ -78,14 +78,18 @@
   .form-optional {
     display: none;
   }
+  label {
+    display: none;
+  }
   .region-site-search {
     position: relative;
   }
   .form-item {
     display: none;
   }
+  .block-search .form-actions,
   .form-actions {
-    display: none;
+    position: static;
     margin: 0;
     padding: 0;
 
@@ -108,27 +112,31 @@
   .bef-exposed-form .form-item {
     margin: 0;
   }
-  .form-search-submit-trigger,
   .form-submit--trigger {
     position: absolute;
-    top: 5px;
+    top: 6px;
     right: 10px;
     display: block;
     margin: 0;
     padding: 0;
-    color: $gray-base;
     text-decoration: none;
     z-index: 1;
 
-    &:hover,
-    &:focus {
-      color: $gray;
+    &:hover {
       text-decoration: none;
     }
-    &::before {
-      @include fa-icon();
-      content: $fa-var-search;
-      font-size: 19px;
+    // Search icon.
+    &:before {
+      @extend %fa-icon;
+      @extend .fas;
+      content: fa-content($fa-var-search);
+      font-size: 18px;
+      color: $gray-base;
+      transition: color .2s ease-in-out;
+    }
+    &:focus:before,
+    &:hover:before {
+      color: $gray;
     }
   }
 }
@@ -151,7 +159,7 @@
  * Footer navigation.
  */
 .footer-nav {
-  margin: 0 0 50px;
+  margin: 0 0 50px 0;
 
   .menu__link {
     display: block;
