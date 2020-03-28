@@ -11,9 +11,6 @@ libraries:
 
 libraries-override:
   orange_framework/bootstrap: orange_starter/bootstrap
-  # Remove commerce styles since we use our own.
-  commerce_checkout/login_pane: false
-  commerce_checkout/form: false
 
 ckeditor_stylesheets:
   - css/style.css

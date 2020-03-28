@@ -19,8 +19,6 @@
 <article{{ attributes.addClass('profile user-dashboard') }}>
   <h1 class="page-title">{{ 'Dashboard'|t }}</h1>
 
-  {{ drupal_view('user_orders_orange', 'dashboard', user.id) }}
-
   <div class="user-dashboard__nav">
     {% if user.hasPermission('userprotect.account.edit') %}
       <a href="{{ base_path }}user/{{ user.id }}/edit" class="user-dashboard__nav-link user-dashboard__nav-link--account-details">

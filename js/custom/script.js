@@ -35,7 +35,7 @@
   // Mobile Search.
   $('.mobile-control-nav .menu__item--search a').click(function(e) {
     $('.mobile-search-overlay').fadeIn('fast');
-    $('.mobile-search-form input.form-search').focus();
+    $('.mobile-search-form .form-item-site-keyword input').focus();
     e.preventDefault();
   });
   $('.mobile-search-form__submit').click(function(e) {
@@ -50,7 +50,7 @@
   });
   $('.mobile-overlay__close').click(function(e) {
     $('.mobile-overlay').fadeOut('fast');
-    $('.mobile-search-form input.form-search').blur();
+    $('.mobile-search-form .form-item-site-keyword input').blur();
     e.preventDefault();
   });
 
@@ -75,9 +75,6 @@
 
     e.preventDefault();
   });
-
-  // Add Site Header search input placeholder.
-  $('.site-header__search .form-type-search input').attr('placeholder', Drupal.t('Enter keyword...'));
 
   // Site search submit trigger.
   if ($('.form-search-submit-trigger').length) {

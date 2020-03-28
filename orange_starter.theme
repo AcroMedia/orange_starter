@@ -386,7 +386,7 @@ function orange_starter_form_alter(&$form, FormStateInterface $form_state, $form
 
   // User Login form.
   if ($form_id == 'user_login_form') {
-    // Make checkout button the primary button.
+    // Make submit button the primary button.
     $form['actions']['submit']['#button_type'] = 'primary';
 
     // Remove autofocus from username input.
@@ -395,7 +395,7 @@ function orange_starter_form_alter(&$form, FormStateInterface $form_state, $form
 
   // User Reset Password form.
   if ($form_id == 'user_pass') {
-    // Make checkout button the primary button.
+    // Make submit button the primary button.
     $form['actions']['submit']['#button_type'] = 'primary';
 
     // Remove mail which was markup.

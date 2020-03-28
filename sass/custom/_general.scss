@@ -1,6 +1,7 @@
-/**
- * General.
- */
+//
+// General.
+//
+
 html,
 body {
   height: 100%;
@@ -9,19 +10,17 @@ body {
   font-family: $f-body;
 }
 body {
-  font-size: 16px;
+  font-size: $fs-global;
   line-height: 1.5;
   min-width: $screen-min;
 
   &.cke_editable {
     padding: 20px;
-    background: #fff;
+    background: $c-white;
   }
 }
 
-/**
- * Images.
- */
+// Images.
 img {
   display: inline-block;
   max-width: 100%;
@@ -31,7 +30,7 @@ img {
   &.align-left {
     display: block;
     float: none;
-    margin: 0 0 20px 0;
+    margin: 0 0 20px;
 
     @media (min-width: $screen-xs-min) {
       float: left;
@@ -41,7 +40,7 @@ img {
   &.align-right {
     display: block;
     float: none;
-    margin: 0 0 20px 0;
+    margin: 0 0 20px;
 
     @media (min-width: $screen-xs-min) {
       float: right;
@@ -55,10 +54,9 @@ img {
   }
 }
 
-/**
- * Typography.
- */
-h1 {
+// Typography.
+h1,
+.h1 {
   margin-top: 30px;
   font-family: $f-primary;
   font-size: 35px;
@@ -67,7 +65,8 @@ h1 {
     font-size: 48px;
   }
 }
-h2 {
+h2,
+.h2 {
   margin-top: 30px;
   font-family: $f-primary;
   font-size: 28px;
@@ -76,7 +75,8 @@ h2 {
     font-size: 35px;
   }
 }
-h3 {
+h3,
+.h3 {
   margin-top: 30px;
   font-family: $f-primary;
   font-size: 25px;
@@ -85,7 +85,8 @@ h3 {
     font-size: 28px;
   }
 }
-h4 {
+h4,
+.h4 {
   margin-top: 25px;
   font-family: $f-primary;
   font-size: 20px;
@@ -94,25 +95,25 @@ h4 {
     font-size: 24px;
   }
 }
-h5 {
+h5,
+.h5 {
   margin-top: 25px;
   font-family: $f-secondary;
   font-size: 18px;
   text-transform: uppercase;
 }
-h6 {
+h6,
+.h6 {
   margin-top: 25px;
   font-family: $f-secondary;
-  font-size: 16px;
+  font-size: $fs-global;
   text-transform: uppercase;
   font-weight: bold;
 }
 
-/**
- * Content.
- */
+// Content.
 p {
-  margin: 0 0 20px 0;
+  margin: 0 0 20px;
   padding: 0;
 }
 ul,
@@ -131,8 +132,8 @@ iframe {
 }
 
 // Clearfix for inline fields.
-.field--label-inline:after {
-  content: "";
+.field--label-inline::after {
+  content: '';
   display: table;
   clear: both;
 }
@@ -151,9 +152,114 @@ iframe {
   @include border-top-radius($border-radius);
 }
 
-/**
- * Tabs.
- */
+// Messages.
+.messages {
+  position: relative;
+  margin: 0 0 20px;
+  padding: 15px 20px 15px 39px;
+  background: none;
+  box-shadow: none;
+  border: 1px solid;
+  border-radius: 2px;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+
+  // Icon.
+  &::before {
+    @extend %fa-icon;
+    @extend .fas;
+    position: absolute;
+    top: 18px;
+    left: 15px;
+    right: auto;
+  }
+}
+[dir="rtl"] .messages {
+  border-width: 1px;
+  padding-left: 20px;
+  padding-right: 39px;
+  text-align: right;
+
+  // Icon.
+  &::before {
+    left: auto;
+    right: 15px;
+  }
+}
+.messages + .messages {
+  margin-top: 1.538em;
+}
+.messages__list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+.messages__item + .messages__item {
+  margin-top: 0.769em;
+}
+
+// Status/Success Message.
+.messages--status {
+  color: $c-success-text;
+  background-color: $c-success-accent;
+  border-color: $c-success-border;
+  background-image: none;
+  box-shadow: none;
+
+  // Icon.
+  &::before {
+    content: fa-content($fa-var-check-circle);
+    color: $c-success;
+  }
+}
+[dir="rtl"] .messages--status {
+  border-color: $c-success-border;
+  box-shadow: none;
+  margin-left: 0;
+}
+
+// Warning Message.
+.messages--warning {
+  background-color: $c-warning-accent;
+  border-color: $c-warning-border;
+  color: $c-warning-text;
+  background-image: none;
+  box-shadow: none;
+
+  // Icon.
+  &::before {
+    content: fa-content($fa-var-exclamation-circle);
+    color: $c-warning;
+  }
+}
+[dir="rtl"] .messages--warning {
+  border-color: $c-warning-border;
+  box-shadow: none;
+}
+
+// Error Message.
+.messages--error {
+  background-color: $c-error-accent;
+  color: $c-error-text;
+  border-color: $c-error-border;
+  background-image: none;
+  box-shadow: none;
+
+  // Icon.
+  &::before {
+    content: fa-content($fa-var-times-circle);
+    color: $c-error;
+  }
+  p.error {
+    color: $c-error-text;
+  }
+}
+[dir="rtl"] .messages--error {
+  border-color: $c-error-border;
+  box-shadow: none;
+}
+
+// Tabs.
 .nav-tabs {
   margin: 20px 0;
   border-bottom-color: $gray-border;
@@ -171,10 +277,6 @@ iframe {
       @media (min-width: $screen-sm-min) {
         border: 1px solid transparent;
         border-radius: $border-radius $border-radius 0 0;
-      }
-      &:hover,
-      &:focus {
-        
       }
     }
     // Active state, and its :hover to override normal :hover
@@ -197,7 +299,7 @@ iframe {
   flex: none;
   margin: 0;
   width: auto;
-  border: none;
+  border: 0;
   border-right: 1px solid $gray-border;
 
   @media (min-width: $screen-sm-min) {
@@ -224,14 +326,12 @@ iframe {
   > li.active > a:focus {
     border: 1px solid $gray-border;
     border-color: $gray-border transparent $gray-border $gray-border;
-    *border-right-color: #fff;
+    border-right-color: #fff;
     border-radius: 0;
   }
 }
 
-/**
- * Panels / Accordion.
- */
+// Panels / Accordion.
 .panel {
   > .panel-heading {
     padding: 0;
@@ -254,18 +354,14 @@ iframe {
   }
 }
 
-/**
- * Slick.
- */
+// Slick.
 .slick-slide {
   // Remove outline on slick items.
   outline: none;
 }
 
-/**
- * Links.
- */
-a {
+// Links.
+@mixin text-link() {
   color: $c-link;
   text-decoration: none;
   @include smooth-transition;
@@ -280,9 +376,11 @@ a {
   }
 }
 
-/**
- * Buttons
- */
+a {
+  @include text-link;
+}
+
+// Buttons.
 button {
   @include smooth-transition;
 }
@@ -296,7 +394,7 @@ button {
   height: auto;
   font-family: $f-secondary;
   font-size: 18px;
-  line-height: 1.0;
+  line-height: 1;
   color: $gray-darker;
   text-decoration: none;
   background: #fff;
@@ -352,7 +450,7 @@ button {
 .btn--sm,
 .btn-group-sm > .btn {
   padding: 8px 16px;
-  font-size: 16px;
+  font-size: $fs-global;
 }
 
 // Form buttons.
@@ -364,7 +462,7 @@ button {
   display: none;
   margin: 0;
   padding: 0;
-  border: none;
+  border: 0;
   background: none;
 
   span {
@@ -372,9 +470,10 @@ button {
   }
 }
 
-/**
- * Overrides.
- */
+//
+// Overrides.
+//
+
 // If there's a text color override set.
 .override-text-color {
   .base-accordion .base-accordion__content {
